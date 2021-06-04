@@ -3,55 +3,59 @@
 }
 
 
-    <div class="row">
-        <div class="col s4 offset-s4">
-            <div class="card">
-                <div class="card-content">
-                    <h4 class="center-align">Acceso Anónimo</h4>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select>
-                                <option value="" disabled selected>Seleccione</option>
-                                <option value="1">Factura</option>
-                                <option value="2">Boleta</option>
-                                <option value="3">Nota de Crédito</option>
-                                <option value="4">Nota de Débito</option>
-                            </select>
-                            <label>Tipo de Comprobante</label>
+<div class="row">
+    <div class="col s4 offset-s4">
+        <div class="card">
+            <div class="row">
+                <form class="col s12" id="formConsultar">
+                    <div class="card-content">
+                        <h4 class="center-align">Acceso Anónimo</h4>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select name="tipoComprobante">
+                                    <option value="" disabled selected>Seleccione</option>
+                                    <option value="1">Factura</option>
+                                    <option value="2">Boleta</option>
+                                    <option value="3">Nota de Crédito</option>
+                                    <option value="4">Nota de Débito</option>
+                                </select>
+                                <label>Tipo de Comprobante</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <label for="numero">Número</label>
+                                <input id="numero" type="number" class="validate" name="numero">
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="serie">Serie</label>
+                                <input id="serie" type="number" class="validate" name="serie">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="monto">Monto Total</label>
+                                <input id="monto" type="number" class="validate" name="monto">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="date">Fecha de Emisión</label>
+                                <input id="date" type="text" class="datepicker" name="fecha">
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <label for="numero">Número</label>
-                            <input id="numero" type="number" class="validate">
-                        </div>
-                        <div class="input-field col s6">
-                            <label for="serie">Serie</label>
-                            <input id="serie" type="number" class="validate">
-                        </div>
+                    <div class="card-action" style="text-align: center">
+                        <button class="btn waves-effect waves-light" id="consultar" type="submit" name="action">
+                            <i class="material-icons left">search</i>
+                            Consultar
+                        </button>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="monto">Monto Total</label>
-                            <input id="monto" type="number" class="validate">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="date">Fecha de Emisión</label>
-                            <input id="date" type="text" class="datepicker">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-action">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
-                        <i class="material-icons left">search</i>
-                        Submit
-                    </button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
 @section Scripts {
@@ -64,6 +68,25 @@
             };
             $('#date').datepicker(options);
             $('select').formSelect();
+
+            $('#consultar').click(function (e) {
+                e.preventDefault();
+                console.log($('#formConsultar').serialize());
+                var data = $('#formConsultar').serialize();
+                $.ajax({
+                    method: 'post',
+                    url: '/Home/Index/',
+                    data: data,
+                    success: function (data) {
+                        console.log(data);
+                        //setTimeout(function () { $('#staticBackdrop').modal('hide'); }, 2000);
+                    },
+                    error: function (err) {
+                        //setTimeout(function () { $('#staticBackdrop').modal('hide'); }, 2000);
+                        alert(err);
+                    }
+                });
+            });
         });
     </script>
 }
