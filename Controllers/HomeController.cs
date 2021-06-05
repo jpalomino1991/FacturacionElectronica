@@ -24,18 +24,15 @@ namespace FacturacionElectronica.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            dynamic data = new System.Dynamic.ExpandoObject();
+            data.comprobante = null;
+            return View(data);
         }
 
-        [HttpPost]
-        public IActionResult Index(ConsultaModel consulta)
+        public ActionResult Consulta(int tipoComprobante, int serie, int numero, decimal monto, DateTime fecha)
         {
-            List<ComprobanteAnonimo> comprobante = _context.ComprobanteAnonimo.FromSqlInterpolated($"taComprobanteUsuarioAnominoLeer @NumeroSerie = {consulta.serie},@NumeroComprobante = {consulta.numero},@MontoTotal = {consulta.monto},@FechaComprobante = {consulta.fecha}").ToList();
-            if(comprobante != null)
-            {
-                return Ok(comprobante[0]);
-            }
-            return Ok();
+            List<ComprobanteAnonimo> comprobante = _context.ComprobanteAnonimo.FromSqlInterpolated($"taComprobanteUsuarioAnominoLeer @NumeroSerie = {serie},@NumeroComprobante = {numero},@MontoTotal = {monto},@FechaComprobante = {fecha}").ToList();
+            return PartialView("_ResultadoPartial",comprobante);
         }
 
         public IActionResult Privacy()

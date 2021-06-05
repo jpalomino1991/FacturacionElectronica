@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<ComprobanteAnonimo>
+
+@if (Model.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo Documento</th>
+                <th>Serie - Número</th>
+                <th>Monto Total (S/.)</th>
+                <th>Fecha Emisión</th>
+                <th>Estado Documento</th>
+                <th>Estado SUNAT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="poner">
+                @if (!string.IsNullOrEmpty(@Model[0].NombreTipoComprobante))
+                {
+                    <td>@Model[0].NombreTipoComprobante</td>
+                    <td>@Model[0].SerieNumero</td>
+                    <td>@Model[0].MontoTotal</td>
+                    <td>@Model[0].FechaComprobante</td>
+                    <td>@Model[0].NombreEstadoComprobante</td>
+                    <td>@Model[0].NombreEstadoComprobanteSUNAT</td>
+                }
+            </tr>
+            <tr>
+                <td><button class="btn waves-effect waves-light">Descargar XML</button></td>
+                <td><button class="btn waves-effect waves-light">Descargar PDF</button></td>
+                <td><button class="btn waves-effect waves-light">Cerrar</button></td>
+            </tr>
+        </tbody>
+    </table>
+}
+else
+{
+<div style="text-align: center">
+    <p>No hay resultado(s)</p>
+</div>    
+}

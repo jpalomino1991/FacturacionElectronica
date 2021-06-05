@@ -2,7 +2,6 @@
     ViewData["Title"] = "Home Page";
 }
 
-
 <div class="row">
     <div class="col s4 offset-s4">
         <div class="card">
@@ -24,12 +23,12 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <label for="numero">Número</label>
-                                <input id="numero" type="number" class="validate" name="numero">
-                            </div>
-                            <div class="input-field col s6">
                                 <label for="serie">Serie</label>
                                 <input id="serie" type="number" class="validate" name="serie">
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="numero">Número</label>
+                                <input id="numero" type="number" class="validate" name="numero">
                             </div>
                         </div>
                         <div class="row">
@@ -57,6 +56,10 @@
     </div>
 </div>
 
+<partial name="_LoadingPartial" />
+
+<div id="resultado"></div>
+
 
 @section Scripts {
     <script>
@@ -68,23 +71,26 @@
             };
             $('#date').datepicker(options);
             $('select').formSelect();
+            $('.collapsible').collapsible();
+            $('#modal1').modal({ 'dismissible' : false });           
 
             $('#consultar').click(function (e) {
                 e.preventDefault();
-                console.log($('#formConsultar').serialize());
-                var data = $('#formConsultar').serialize();
-                $.ajax({
-                    method: 'post',
-                    url: '/Home/Index/',
-                    data: data,
-                    success: function (data) {
-                        console.log(data);
-                        //setTimeout(function () { $('#staticBackdrop').modal('hide'); }, 2000);
-                    },
-                    error: function (err) {
-                        //setTimeout(function () { $('#staticBackdrop').modal('hide'); }, 2000);
-                        alert(err);
-                    }
+                var elem = document.querySelector('#modal1');
+                var instance = M.Modal.getInstance(elem);
+                instance.open();
+                //$('#modal1').removeAttr('style');
+                $('#modal1').css('background-color', 'transparent');
+                $('#modal1').css('width', '90px');
+                $('#modal1').css('height', '70px');
+                $('#modal1').css('margin-top', '15%');
+                $('#modal1').css('box-shadow', 'none');
+                var serie = $('#serie').val();
+                var numero = $('#numero').val();
+                var monto = $('#monto').val();
+                var fecha = $('#date').val();
+                $('#resultado').load("/Home/Consulta", { serie: serie, numero: numero, monto: monto, fecha: fecha }, function () {
+                    instance.close();
                 });
             });
         });
