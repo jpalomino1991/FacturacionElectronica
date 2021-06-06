@@ -30,16 +30,30 @@
                 }
             </tr>
             <tr>
-                <td><button class="btn waves-effect waves-light">Descargar XML</button></td>
-                <td><button class="btn waves-effect waves-light">Descargar PDF</button></td>
-                <td><button class="btn waves-effect waves-light">Cerrar</button></td>
+                <td><a id="xml" href="/Consulta/DownloadXML/?codigo=@Model[0].CodigoComprobante" class="btn waves-effect waves-light">Descargar XML</a></td>
+                <td><a id="pdf" href="/Consulta/DownloadPDF/?codigo=@Model[0].CodigoComprobante" class="btn waves-effect waves-light">Descargar PDF</a></td>
             </tr>
         </tbody>
     </table>
 }
 else
 {
-<div style="text-align: center">
-    <p>No hay resultado(s)</p>
-</div>    
+    <div style="text-align: center">
+        <p>No hay resultado(s)</p>
+    </div>
 }
+
+    <script>
+        $('#xml').click(function () {
+            var elem = document.querySelector('#modal1');
+            var instance = M.Modal.getInstance(elem);
+            instance.open();
+            setTimeout(function () { instance.close() }, 5000);
+        });
+        $('#pdf').click(function () {
+            var elem = document.querySelector('#modal1');
+            var instance = M.Modal.getInstance(elem);
+            instance.open();
+            setTimeout(function () { instance.close() }, 5000);
+        });
+    </script>

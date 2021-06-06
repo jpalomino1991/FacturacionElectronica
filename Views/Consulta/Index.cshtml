@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Inicio de Sesión";
+}
+
+<div class="row">
+    <div class="col s10 offset-s1">
+        <div class="card">
+            <div class="row">
+                <form class="col s12" id="formInicio">
+                    <div class="card-content">
+                        <h4 class="center-align">Inicio de Sesión</h4>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <label for="serie">Correo Electrónico</label>
+                                <input id="serie" type="email" class="validate" name="serie">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">lock</i>
+                                <label for="monto">Contraseña</label>
+                                <input id="monto" type="password" class="validate" name="monto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action" style="text-align: center">
+                        <button class="btn waves-effect waves-light" id="consultar" type="submit" name="action">
+                            <i class="material-icons left">arrow_forward</i>
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row alinear">
+            <a>Recuperar Contraseña</a>
+        </div>
+        <div class="row alinear">
+            <a>No tiene cuenta?, Creala</a>
+        </div>
+        <div class="row alinear">
+            <a asp-action="AccesoAnonimo">Acceso Anónimo</a>
+        </div>
+    </div>
+</div>
+
+<partial name="_LoadingPartial" />
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+}

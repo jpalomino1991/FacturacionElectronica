@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Acceso Anónimo";
 }
 
 <div class="row">
-    <div class="col s4 offset-s4">
+    <div class="col s6 offset-s3">
         <div class="card">
             <div class="row">
                 <form class="col s12" id="formConsultar">
@@ -49,6 +49,7 @@
                             <i class="material-icons left">search</i>
                             Consultar
                         </button>
+                        <a class="btn waves-effect waves-light" asp-action="Index"><i class="material-icons left">arrow_back</i>Regresar</a>
                     </div>
                 </form>
             </div>
@@ -72,7 +73,7 @@
             $('#date').datepicker(options);
             $('select').formSelect();
             $('.collapsible').collapsible();
-            $('#modal1').modal({ 'dismissible' : false });           
+            $('#modal1').modal({ 'dismissible' : false });
 
             $('#consultar').click(function (e) {
                 e.preventDefault();
@@ -89,7 +90,7 @@
                 var numero = $('#numero').val();
                 var monto = $('#monto').val();
                 var fecha = $('#date').val();
-                $('#resultado').load("/Home/Consulta", { serie: serie, numero: numero, monto: monto, fecha: fecha }, function () {
+                $('#resultado').load("/Consulta/Consulta", { serie: serie, numero: numero, monto: monto, fecha: fecha }, function () {
                     instance.close();
                 });
             });

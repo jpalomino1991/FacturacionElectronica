@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace FacturacionElectronica.Controllers
 {
-    public class HomeController : Controller
+    public class ConsultaController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ConsultaController> _logger;
 
-        public HomeController(ApplicationDbContext context, ILogger<HomeController> logger)
+        public ConsultaController(ApplicationDbContext context, ILogger<ConsultaController> logger)
         {
             _context = context;
             _logger = logger;
@@ -24,9 +24,7 @@ namespace FacturacionElectronica.Controllers
 
         public IActionResult Index()
         {
-            dynamic data = new System.Dynamic.ExpandoObject();
-            data.comprobante = null;
-            return View(data);
+            return View();
         }
 
         public ActionResult Consulta(int tipoComprobante, int serie, int numero, decimal monto, DateTime fecha)
@@ -44,6 +42,31 @@ namespace FacturacionElectronica.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public ActionResult AccesoAnonimo()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> DownloadXML(string codigo)
+        {
+            List<taComprobanteArchivo> archivo = await _context.TaComprobanteArchivo.FromSqlInterpolated($"taComprobanteArchivoLeerPorCodigoComprobante @CodigoComprobante = {codigo} ,@CodigoTipoComprobanteArchivo = 1").ToListAsync();
+            if(archivo.Count > 0)
+            {
+                return File(archivo[0].ItemImage,"application/xml",archivo[0].NombreArchivo);
+            }
+            return Ok();
+        }
+
+        public async Task<ActionResult> DownloadPDF(string codigo)
+        {
+            List<taComprobanteArchivo> archivo = await _context.TaComprobanteArchivo.FromSqlInterpolated($"taComprobanteArchivoLeerPorCodigoComprobante @CodigoComprobante = {codigo} ,@CodigoTipoComprobanteArchivo = 2").ToListAsync();
+            if (archivo.Count > 0)
+            {
+                return File(archivo[0].ItemImage, "application/xml", archivo[0].NombreArchivo);
+            }
+            return Ok();
         }
     }
 }
