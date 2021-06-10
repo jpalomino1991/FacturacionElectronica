@@ -63,6 +63,14 @@ namespace FacturacionElectronica
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.ConfigureApplicationCookie(o => {
+                o.LoginPath = "/Cuenta/Login";
+                o.SlidingExpiration = false;
+                o.Cookie.IsEssential = false;
+                o.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+            });
+
             services.AddAutoMapper(typeof(Startup));
         }
 
@@ -91,7 +99,7 @@ namespace FacturacionElectronica
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Consulta}/{action=Index}/{id?}");
+                    pattern: "{controller=Cuenta}/{action=Login}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

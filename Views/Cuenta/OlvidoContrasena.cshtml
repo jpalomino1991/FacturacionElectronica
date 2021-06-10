@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Recuperar Contraseña";
+}
+
+@model FacturacionElectronica.Models.ForgotPasswordModel
+
+<div class="row">
+    <div class="col s6 offset-s3">
+        <div class="card">
+            <div class="row">
+                <form asp-action="OlvidoContrasena" class="col s12">
+                    <div class="card-content">
+                        <h4 class="center-align">Recuperar Contraseña</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="red-text text-darken-1"></span>
+                            </div>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="red-text text-darken-1"></div>
+                        <div class="card-action" style="text-align: center">
+                            <button type="submit" class="btn waves-effect waves-light">Recuperar</button>
+                            <a class="btn waves-effect waves-light" asp-controller="Cuenta" asp-action="Login"><i class="material-icons left">arrow_back</i>Regresar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

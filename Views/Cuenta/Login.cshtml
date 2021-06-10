@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Inicio de Sesión";
+}
+
+@model FacturacionElectronica.Models.UserLoginModel
+
+<div class="row">
+    <div class="col s10 offset-s1">
+        <div class="card">
+            <div class="row">
+                <form class="col s12" id="formInicio" asp-action="Login" asp-controller="Cuenta">
+                    <div class="card-content">
+                        <h4 class="center-align">Inicio de Sesión</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="red-text text-darken-1"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">lock</i>
+                                <label asp-for="Password" class="control-label"></label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="red-text text-darken-1"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="red-text text-darken-1"></div>
+                    <div class="card-action" style="text-align: center">
+                        <button class="btn waves-effect waves-light" id="consultar" type="submit" name="action">
+                            <i class="material-icons left">arrow_forward</i>
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row alinear">
+            <a asp-action="OlvidoContrasena">Recuperar Contraseña</a>
+        </div>
+        <div class="row alinear">
+            <a asp-action="Registrar">No tiene cuenta? Creala</a>
+        </div>
+        <div class="row alinear">
+            <a asp-controller="Consulta" asp-action="AccesoAnonimo">Acceso Anónimo</a>
+        </div>
+    </div>
+</div>
+
+<partial name="_LoadingPartial" />
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+}

@@ -1,5 +1,6 @@
 ﻿using FacturacionElectronica.Data;
 using FacturacionElectronica.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -22,15 +23,21 @@ namespace FacturacionElectronica.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Consulta(int tipoComprobante, int serie, int numero, decimal monto, DateTime fecha)
+        public async Task<ActionResult> Consulta([Bind("tipoComprobante,serie,numero,monto,fecha")] AccesoAnonimoModel anonimo)
         {
-            List<ComprobanteAnonimo> comprobante = _context.ComprobanteAnonimo.FromSqlInterpolated($"taComprobanteUsuarioAnominoLeer @NumeroSerie = {serie},@NumeroComprobante = {numero},@MontoTotal = {monto},@FechaComprobante = {fecha}").ToList();
-            return PartialView("_ResultadoPartial",comprobante);
+            if (ModelState.IsValid)
+            {
+                List<ComprobanteAnonimo> comprobante = await _context.ComprobanteAnonimo.FromSqlInterpolated($"taComprobanteUsuarioAnominoLeer @NumeroSerie = {anonimo.serie},@NumeroComprobante = {anonimo.numero},@MontoTotal = {anonimo.monto},@FechaComprobante = {anonimo.fecha}").ToListAsync();
+                return PartialView("_ResultadoPartial", comprobante);
+            }
+            else
+                return View(anonimo);
         }
 
         public IActionResult Privacy()

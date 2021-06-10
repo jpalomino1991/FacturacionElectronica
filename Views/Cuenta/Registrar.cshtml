@@ -1,4 +1,9 @@
-﻿@model FacturacionElectronica.Models.UserRegistrationModel
+﻿@{
+    ViewData["Title"] = "Crear Cuenta";
+}
+
+@model FacturacionElectronica.Models.UserRegistrationModel
+
 <div class="row">
     <div class="col s6 offset-s3">
         <div class="card">
@@ -6,43 +11,43 @@
                 <form asp-action="Registrar" class="col s12">
                     <div class="card-content">
                         <h4 class="center-align">Crear Cuenta</h4>
-                        <hr/>
-                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <hr />
                         <div class="row">
                             <div class="input-field col s12">
                                 <label asp-for="RazonSocial" class="control-label"></label>
                                 <input asp-for="RazonSocial" class="form-control" />
-                                <span asp-validation-for="RazonSocial" class="text-danger"></span>
+                                <span asp-validation-for="RazonSocial" class="red-text text-darken-1"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label asp-for="NumeroDocumento" class="control-label"></label>
                                 <input asp-for="NumeroDocumento" class="form-control" />
-                                <span asp-validation-for="NumeroDocumento" class="text-danger"></span>
+                                <span asp-validation-for="NumeroDocumento" class="red-text text-darken-1"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label asp-for="Email" class="control-label"></label>
                                 <input asp-for="Email" class="form-control" />
-                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <span asp-validation-for="Email" class="red-text text-darken-1"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label asp-for="Password" class="control-label"></label>
                                 <input asp-for="Password" class="form-control" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <span asp-validation-for="Password" class="red-text text-darken-1"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label asp-for="ConfirmPassword" class="control-label"></label>
                                 <input asp-for="ConfirmPassword" class="form-control" />
-                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                <span asp-validation-for="ConfirmPassword" class="red-text text-darken-1"></span>
                             </div>
                         </div>
+                        <div asp-validation-summary="All" class="red-text text-darken-1"></div>
                         <div class="card-action" style="text-align: center">
                             <input type="submit" value="Crear" class="btn btn-primary" />
                             <a class="btn waves-effect waves-light" asp-controller="Consulta" asp-action="Index"><i class="material-icons left">arrow_back</i>Regresar</a>
