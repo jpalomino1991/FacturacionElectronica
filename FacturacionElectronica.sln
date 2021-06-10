@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica", "FacturacionElectronica.csproj", "{DDD09B87-783F-470F-BF72-7413E067CD8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacturacionElectronica", "FacturacionElectronica.csproj", "{DDD09B87-783F-470F-BF72-7413E067CD8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "..\EmailService\EmailService.csproj", "{299C7A34-AE41-4E15-939C-A3ED8DA80799}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DDD09B87-783F-470F-BF72-7413E067CD8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDD09B87-783F-470F-BF72-7413E067CD8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDD09B87-783F-470F-BF72-7413E067CD8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{299C7A34-AE41-4E15-939C-A3ED8DA80799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{299C7A34-AE41-4E15-939C-A3ED8DA80799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{299C7A34-AE41-4E15-939C-A3ED8DA80799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{299C7A34-AE41-4E15-939C-A3ED8DA80799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
