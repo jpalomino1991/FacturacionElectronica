@@ -1,6 +1,7 @@
 ﻿using FacturacionElectronica.Data;
 using FacturacionElectronica.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -16,17 +17,24 @@ namespace FacturacionElectronica.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<ConsultaController> _logger;
+        private UserManager<User> _userManager;
 
-        public ConsultaController(ApplicationDbContext context, ILogger<ConsultaController> logger)
+        public ConsultaController(ApplicationDbContext context, ILogger<ConsultaController> logger, UserManager<User> userManager)
         {
             _context = context;
             _logger = logger;
+            _userManager = userManager;
         }
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            var numeroDocumento = user.NumeroDocumento;
+
+            List<ComprobanteAnonimo> comprobantes = await _context.ComprobanteAnonimo.FromSqlInterpolated($"taComprobanteUsuarioLeer @PorNumeroDocumento = 1,@NumeroDocumento = {numeroDocumento},@PorSerieNumero = 0,@NumeroSerie = '',@NumeroComprobante = 0,@PorFechaComprobante = 0,@FechaComprobanteA = '',@FechaComprobanteB = ''").ToListAsync();
+
+            return View(comprobantes);
         }
 
         public async Task<ActionResult> Consulta([Bind("tipoComprobante,serie,numero,monto,fecha")] AccesoAnonimoModel anonimo)
