@@ -68,7 +68,7 @@ namespace FacturacionElectronica
                 o.LoginPath = "/Cuenta/Login";
                 o.SlidingExpiration = false;
                 o.Cookie.IsEssential = false;
-                o.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+                o.ExpireTimeSpan = TimeSpan.FromSeconds(60);
             });
 
             services.AddAutoMapper(typeof(Startup));

@@ -21,7 +21,7 @@
                         </div>
                         <div asp-validation-summary="ModelOnly" class="red-text text-darken-1"></div>
                         <div class="card-action" style="text-align: center">
-                            <button type="submit" class="btn waves-effect waves-light">Recuperar</button>
+                            <button type="submit" id="recuperar" class="btn waves-effect waves-light">Recuperar</button>
                             <a class="btn waves-effect waves-light" asp-controller="Cuenta" asp-action="Login"><i class="material-icons left">arrow_back</i>Regresar</a>
                         </div>
                     </div>
@@ -31,6 +31,16 @@
     </div>
 </div>
 
+<partial name="_LoadingPartial" />
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+            $(document).ready(function () {
+                $('#modal1').modal({ 'dismissible': false });
+                $('#recuperar').click(function () {
+                    abrirModal(false);
+                });
+            });
+    </script>
 }

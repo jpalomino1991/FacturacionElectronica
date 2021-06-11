@@ -49,7 +49,7 @@
                         </div>
                         <div asp-validation-summary="All" class="red-text text-darken-1"></div>
                         <div class="card-action" style="text-align: center">
-                            <input type="submit" value="Crear" class="btn btn-primary" />
+                            <input type="submit" id="crear" value="Crear" class="btn btn-primary" />
                             <a class="btn waves-effect waves-light" asp-controller="Consulta" asp-action="Index"><i class="material-icons left">arrow_back</i>Regresar</a>
                         </div>
                     </div>
@@ -59,6 +59,16 @@
     </div>
 </div>
 
+<partial name="_LoadingPartial" />
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $('#modal1').modal({ 'dismissible': false });
+            $('#crear').click(function () {
+                abrirModal(false);
+            });
+        });
+    </script>
 }

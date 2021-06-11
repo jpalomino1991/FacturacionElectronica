@@ -36,8 +36,8 @@
                                     <td>@comprobante.NombreEstadoComprobante</td>
                                     <td>@comprobante.NombreEstadoComprobanteSUNAT</td>
                                     <td>
-                                        <a id="xml" href="/Consulta/DownloadXML/?codigo=@comprobante.CodigoComprobante" class="btn waves-effect waves-light">XML</a>
-                                        <a id="pdf" href="/Consulta/DownloadPDF/?codigo=@comprobante.CodigoComprobante" class="btn waves-effect waves-light">PDF</a>
+                                        <a href="/Consulta/DownloadXML/?codigo=@comprobante.CodigoComprobante" class="btn waves-effect waves-light xml">XML</a>
+                                        <a href="/Consulta/DownloadPDF/?codigo=@comprobante.CodigoComprobante" class="btn waves-effect waves-light pdf">PDF</a>
                                     </td>
                                 </tr>
                                 }
@@ -60,7 +60,13 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-
+            $('#modal1').modal({ 'dismissible': false });
+            $('.xml').click(function () {
+                abriModal(true);
+            });
+            $('.pdf').click(function () {
+                abriModal(true);
+            });
         });
     </script>
 }
