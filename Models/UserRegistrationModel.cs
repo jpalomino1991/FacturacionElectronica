@@ -8,22 +8,22 @@ namespace FacturacionElectronica.Models
 {
     public class UserRegistrationModel
     {
-        [Required(ErrorMessage = "Ingrese Razón Social")]
+        [Required(ErrorMessage = "Ingrese razón social")]
         [Display(Name = "Razón Social")]
         public string RazonSocial { get; set; }
-        [Required(ErrorMessage = "Ingrese Número de Documento")]
+        [Required(ErrorMessage = "Ingrese número de documento")]
         [Display(Name = "Número de Documento")]
         public string NumeroDocumento { get; set; }
-        [Required(ErrorMessage = "Debe poner un correo")]
+        [Required(ErrorMessage = "Ingrese correo electrónico")]
         [EmailAddress]
         [Display(Name = "Correo Electrónico")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Contraseña requerida")]
+        [Required(ErrorMessage = "Ingrese contraseña")]
         [Display(Name = "Contraseña")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Las contraseñas no coinciden.")]
+        [Compare("Password", ErrorMessage = "Las contraseñas no coinciden")]
         [Display(Name = "Confirmar Contraseña")]
         public string ConfirmPassword { get; set; }
     }

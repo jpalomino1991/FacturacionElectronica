@@ -8,7 +8,7 @@ namespace FacturacionElectronica.Models
 {
     public class ResetPasswordModel
     {
-        [Required]
+        [Required(ErrorMessage = "Ingrese contraseña")]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }

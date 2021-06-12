@@ -3,6 +3,7 @@ using FacturacionElectronica.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -37,15 +38,14 @@ namespace FacturacionElectronica.Controllers
             return View(comprobantes);
         }
 
-        public async Task<ActionResult> Consulta([Bind("tipoComprobante,serie,numero,monto,fecha")] AccesoAnonimoModel anonimo)
+        public ActionResult Resultado(ComprobanteAnonimo comprobante)
         {
             if (ModelState.IsValid)
             {
-                List<ComprobanteAnonimo> comprobante = await _context.ComprobanteAnonimo.FromSqlInterpolated($"taComprobanteUsuarioAnominoLeer @NumeroSerie = {anonimo.serie},@NumeroComprobante = {anonimo.numero},@MontoTotal = {anonimo.monto},@FechaComprobante = {anonimo.fecha}").ToListAsync();
-                return PartialView("_ResultadoPartial", comprobante);
+                return View(comprobante);
             }
             else
-                return View(anonimo);
+                return View();
         }
 
         public IActionResult Privacy()
@@ -61,7 +61,28 @@ namespace FacturacionElectronica.Controllers
 
         public ActionResult AccesoAnonimo()
         {
-            return View();
+            AccesoAnonimoModel anonimo = new AccesoAnonimoModel();
+            return View(anonimo);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AccesoAnonimo(AccesoAnonimoModel anonimo)
+        {
+            if (ModelState.IsValid)
+            {
+                List<ComprobanteAnonimo> comprobante = await _context.ComprobanteAnonimo.FromSqlInterpolated($"taComprobanteUsuarioAnominoLeer @NumeroSerie = {anonimo.serie},@NumeroComprobante = {anonimo.numero},@MontoTotal = {anonimo.monto},@FechaComprobante = {DateTime.Parse(anonimo.fecha)}").ToListAsync();
+                if (comprobante.Count > 0)
+                {
+                    return RedirectToAction(nameof(ConsultaController.Resultado), "Consulta", new RouteValueDictionary(comprobante[0]));
+                }
+                else
+                {
+                    anonimo.error = "No hay resultados";
+                    return View(anonimo);
+                }
+            }
+            else
+                return View(anonimo);
         }
 
         public async Task<ActionResult> DownloadXML(string codigo)

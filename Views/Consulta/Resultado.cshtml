@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Acceso Anónimo";
+}
+
+@model FacturacionElectronica.Models.ComprobanteAnonimo
+
+<h3 class="alinear">Resultado</h3>
+
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>Tipo Documento</th>
+            <th>Serie - Número</th>
+            <th>Monto Total (S/.)</th>
+            <th>Fecha Emisión</th>
+            <th>Estado Documento</th>
+            <th>Estado SUNAT</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="poner">
+            <td>@Model.NombreTipoComprobante</td>
+            <td>@Model.SerieNumero</td>
+            <td>@Model.MontoTotal</td>
+            <td>@Model.FechaComprobante</td>
+            <td>@Model.NombreEstadoComprobante</td>
+            <td>@Model.NombreEstadoComprobanteSUNAT</td>
+        </tr>
+        <tr>
+            <td><a id="xml" href="/Consulta/DownloadXML/?codigo=@Model.CodigoComprobante" class="btn waves-effect waves-light">Descargar XML</a></td>
+            <td><a id="pdf" href="/Consulta/DownloadPDF/?codigo=@Model.CodigoComprobante" class="btn waves-effect waves-light">Descargar PDF</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<div class="row alinear">
+    <a class="btn waves-effect waves-light" asp-action="AccesoAnonimo"><i class="material-icons left">arrow_back</i>Regresar</a>
+</div>
+
+<partial name="_LoadingPartial" />
+
+<script>
+    $(document).ready(function () {
+        $('#modal1').modal({ 'dismissible': false });
+        $('#xml').click(function () {
+            abrirModal(true);
+        });
+        $('#pdf').click(function () {
+            abrirModal(true);
+        });
+    });
+</script>

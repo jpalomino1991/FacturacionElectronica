@@ -8,7 +8,7 @@
     <div class="col s6 offset-s3">
         <div class="card">
             <div class="row">
-                <form class="col s12" id="formConsultar">
+                <form class="col s12" id="formConsultar" asp-action="AccesoAnonimo" asp-controller="Consulta">
                     <div class="card-content">
                         <h4 class="center-align">Acceso Anónimo</h4>
                         <hr />
@@ -25,30 +25,31 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <label for="serie">Serie</label>
-                                <input id="serie" type="number" class="validate" name="serie" required>
-                                <span class="helper-text" data-error="Ingrese serie de comprobante" data-success="right"></span>
+                                <label asp-for="serie" class="control-label"></label>
+                                <input asp-for="serie" type="number" />
+                                <span asp-validation-for="serie" class="red-text text-darken-1"></span>
                             </div>
                             <div class="input-field col s6">
-                                <label for="numero">Número</label>
-                                <input id="numero" type="number" class="validate" name="numero" required>
-                                <span class="helper-text" data-error="Ingrese número de comprobante" data-success="right"></span>
+                                <label asp-for="numero" class="control-label"></label>
+                                <input asp-for="numero" type="number" />
+                                <span asp-validation-for="numero" class="red-text text-darken-1"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="numero">Monto Total</label>
-                                <input id="monto" type="number" class="validate" name="monto" required>
-                                <span class="helper-text" data-error="Ingrese monto de comprobante" data-success="right"></span>
+                                <label asp-for="monto" class="control-label"></label>
+                                <input asp-for="monto" type="number" />
+                                <span asp-validation-for="monto" class="red-text text-darken-1"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="date">Fecha de Emisión</label>
-                                <input id="date" type="text" class="validate datepicker" name="fecha" required>
-                                <span class="helper-text" data-error="Ingrese fecha de emisión" data-success="right"></span>
+                                <label asp-for="fecha"></label>
+                                <input asp-for="fecha" type="text" id="date" class="datepicker" />
+                                <span asp-validation-for="fecha" class="red-text text-darken-1"></span>
                             </div>
                         </div>
+                        <div asp-validation-summary="ModelOnly" class="red-text text-darken-1"></div>
                     </div>
                     <div class="card-action" style="text-align: center">
                         <button class="btn waves-effect waves-light" id="consultar" type="submit" name="action">
@@ -65,7 +66,14 @@
 
 <partial name="_LoadingPartial" />
 
-<div id="resultado"></div>
+@if (!String.IsNullOrEmpty(Model.error))
+{
+    <div style="text-align: center">
+        <p>
+            @Model.error
+        </p>
+    </div>
+}
 
 
 @section Scripts {
@@ -78,27 +86,10 @@
             };
             $('#date').datepicker(options);
             $('select').formSelect();
-            $('.collapsible').collapsible();
             $('#modal1').modal({ 'dismissible': false });
 
-            $('#consultar').click(function (e) {
-                e.preventDefault();
-                var elem = document.querySelector('#modal1');
-                var instance = M.Modal.getInstance(elem);
-                instance.open();
-                //$('#modal1').removeAttr('style');
-                $('#modal1').css('background-color', 'transparent');
-                $('#modal1').css('width', '90px');
-                $('#modal1').css('height', '70px');
-                $('#modal1').css('margin-top', '15%');
-                $('#modal1').css('box-shadow', 'none');
-                var serie = $('#serie').val();
-                var numero = $('#numero').val();
-                var monto = $('#monto').val();
-                var fecha = $('#date').val();
-                $('#resultado').load("/Consulta/Consulta", { serie: serie, numero: numero, monto: monto, fecha: fecha }, function () {
-                    instance.close();
-                });
+            $('#consultar').click(function () {
+                abrirModal(false);
             });
         });
     </script>
