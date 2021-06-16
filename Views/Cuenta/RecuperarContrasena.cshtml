@@ -41,3 +41,16 @@
         </div>
     </div>
 </div>
+
+<partial name="_LoadingPartial" />
+
+@section Scripts {
+    <script>
+            $(document).ready(function () {
+                $('#modal1').modal({ 'dismissible': false });
+                $('#consultar').click(function () {
+                    abrirModal(false);
+                });
+            });
+    </script>
+}

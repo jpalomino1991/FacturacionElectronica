@@ -21,6 +21,16 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
+                                <select name="TipoDocumento">
+                                    <option value="1" selected>DNI</option>
+                                    <option value="2">RUC</option>
+                                </select>
+                                <label asp-for="TipoDocumento" class="control-label"></label>
+                                <span asp-validation-for="TipoDocumento" class="red-text text-darken-1"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
                                 <label asp-for="NumeroDocumento" class="control-label"></label>
                                 <input asp-for="NumeroDocumento" class="form-control" />
                                 <span asp-validation-for="NumeroDocumento" class="red-text text-darken-1"></span>
@@ -62,10 +72,10 @@
 <partial name="_LoadingPartial" />
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
         $(document).ready(function () {
             $('#modal1').modal({ 'dismissible': false });
+            $('select').formSelect();
             $('#crear').click(function () {
                 abrirModal(false);
             });

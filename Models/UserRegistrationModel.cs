@@ -1,6 +1,8 @@
-﻿using System;
+﻿using FacturacionElectronica.CustomValidation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,8 +13,12 @@ namespace FacturacionElectronica.Models
         [Required(ErrorMessage = "Ingrese razón social")]
         [Display(Name = "Razón Social")]
         public string RazonSocial { get; set; }
+        [NotMapped]
+        [Display(Name = "Tipo de Documento")]
+        public int TipoDocumento { get; set; }
         [Required(ErrorMessage = "Ingrese número de documento")]
         [Display(Name = "Número de Documento")]
+        [CustomDocumentType]
         public string NumeroDocumento { get; set; }
         [Required(ErrorMessage = "Ingrese correo electrónico")]
         [EmailAddress]
