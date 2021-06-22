@@ -4,9 +4,7 @@
 
 @model FacturacionElectronica.Models.UserLoginModel
 
-<div class="row">
-    <div class="col s10 offset-s1">
-        <div class="card">
+        <div class="card alinear">
             <div class="row">
                 <form class="col s12" id="formInicio" asp-action="Login" asp-controller="Cuenta">
                     <div class="card-content">
@@ -48,8 +46,6 @@
         <div class="row alinear">
             <a asp-controller="Consulta" asp-action="AccesoAnonimo">Acceso Anónimo</a>
         </div>
-    </div>
-</div>
 
 <partial name="_LoadingPartial" />
 

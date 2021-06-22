@@ -99,7 +99,7 @@ namespace FacturacionElectronica
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Cuenta}/{action=Login}/{id?}");
+                    pattern: "{controller=Consulta}/{action=AccesoAnonimo}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
