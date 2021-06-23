@@ -9,6 +9,7 @@
                 <form class="col s12" id="formConsultar" asp-action="AccesoAnonimo" asp-controller="Consulta">
                     <div class="card-content">
                         <h4 class="center-align">Acceso Anónimo</h4>
+                        <p class="center-align">Señor Contribuyente , a través de esta consulta, Usted podrá verificar si una Factura Electrónica, una Boleta Electrónica, sus Notas Electrónicas relacionadas o una Guía de Remisión Electrónica se encuentran registradas o informadas a la SUNAT.</p>
                         <hr />
                         @*<div class="row">
                             <div class="input-field col s12">
@@ -24,26 +25,26 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <label asp-for="serie" class="control-label"></label>
-                                <input asp-for="serie" type="text" placeholder="F001"/>
+                                <input asp-for="serie" type="text" placeholder="F001" />
                                 <span asp-validation-for="serie" class="red-text text-darken-1"></span>
                             </div>
                             <div class="input-field col s6">
                                 <label asp-for="numero" class="control-label"></label>
-                                <input asp-for="numero" type="number" placeholder="269"/>
+                                <input asp-for="numero" type="number" placeholder="269" />
                                 <span asp-validation-for="numero" class="red-text text-darken-1"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label asp-for="monto" class="control-label"></label>
-                                <input asp-for="monto" type="number" placeholder="444"/>
+                                <input asp-for="monto" type="number" placeholder="444" />
                                 <span asp-validation-for="monto" class="red-text text-darken-1"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <label asp-for="fecha"></label>
-                                <input asp-for="fecha" type="text" id="date" class="datepicker" placeholder="22/06/2021"/>
+                                <input asp-for="fecha" type="text" id="date" class="datepicker" placeholder="22/06/2021" />
                                 <span asp-validation-for="fecha" class="red-text text-darken-1"></span>
                             </div>
                         </div>
@@ -60,7 +61,7 @@
             </div>
         </div>
         <div class="row alinear">
-            <a asp-action="Login" asp-controller="Cuenta">Tiene cuenta? Inicia Sesión</a>
+            <a asp-action="Login" asp-controller="Cuenta" class="btn">Inicia Sesión</a>
         </div>
 
 <partial name="_LoadingPartial" />
