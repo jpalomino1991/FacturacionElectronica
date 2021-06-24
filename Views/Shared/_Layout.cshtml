@@ -7,41 +7,49 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FacturacionElectronica</title>
+    <title>@ViewData["Title"] - ComprobanteElectronica</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/materialize/dist/css/materialize.css">
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script type="text/javascript">
+        var onloadCallback = function () {
+            alert("grecaptcha is ready!");
+        };
+    </script>
 </head>
 <body>
     <header>
         <nav>
-            <div class="nav-wrapper purple darken-4">
-                <a href="#!" class="brand-logo center"><img src="~/img/SIELSE_20x20.png" /> Facturación Electrónica</a>
+            <div class="nav-wrapper white">
+                <a href="#!" class="brand-logo center blue-text text-darken-2 letter">Consulta tus comprobantes Electronico</a>
+                
+                <!--<a href="#!" class="brand-logo center"><img src="https://ov.electroucayali.com.pe/assets/img/ic_electro_ucayali.png" width="35" height="35" /> Comprobantes Electronicos</a>-->
                 @if (SignInManager.IsSignedIn(User))
-                {
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="sass.html">@User.Identity.Name</a></li>
-                        <li>
-                            <form asp-controller="Cuenta" asp-action="Logout">
-                                <button type="submit" class="btn waves-effect waves-light">Cerrar Sesión</button>
-                            </form>
-                        </li>
-                    </ul>
-                }
+                    {
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">@User.Identity.Name</a></li>
+                    <li>
+                        <form asp-controller="Cuenta" asp-action="Logout">
+                            <button type="submit" class="btn waves-effect waves-light">Cerrar Sesión</button>
+                        </form>
+                    </li>
+                </ul>}
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/materialize/dist/js/materialize.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
-</body>
-</html>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/materialize/dist/js/materialize.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>

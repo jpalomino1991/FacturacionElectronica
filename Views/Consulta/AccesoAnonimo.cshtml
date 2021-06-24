@@ -1,72 +1,97 @@
 ﻿@{
-    ViewData["Title"] = "Acceso Anónimo";
+    ViewData["Title"] = "Consultas tu Comprobante Electronico";
 }
 
 @model FacturacionElectronica.Models.AccesoAnonimoModel
 
-        <div class="card alinear">
-            <div class="row">
-                <form class="col s12" id="formConsultar" asp-action="AccesoAnonimo" asp-controller="Consulta">
-                    <div class="card-content">
+
+    <div id="modal1" class="modal"  width="200" height="200" >
+        <div class="modal-content" width="200" height="200">
+            <img src="~/img/ayuda.gif" width="500" height="350" alt="Ayuda">
+            <!--<img src="archivo.gif" width="100" height="100" border="0">-->
+        </div>
+        <div class="modal-footer">
+         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">cerrar ayuda</a>
+        </div>
+    </div>
+    
+
+    <div class="card alinear">
+        <div class="row">
+            <form class="col s12" id="formConsultar" asp-action="AccesoAnonimo" asp-controller="Consulta">
+                <div class="card-content">
+                    <div class="row">
                         <h4 class="center-align">Acceso Anónimo</h4>
-                        <p class="center-align">Señor Contribuyente , a través de esta consulta, Usted podrá verificar si una Factura Electrónica, una Boleta Electrónica, sus Notas Electrónicas relacionadas o una Guía de Remisión Electrónica se encuentran registradas o informadas a la SUNAT.</p>
-                        <hr />
-                        @*<div class="row">
-                            <div class="input-field col s12">
-                                <select name="tipoComprobante">
-                                    <option value="1" selected>Factura</option>
-                                    <option value="2">Boleta</option>
-                                    <option value="3">Nota de Crédito</option>
-                                    <option value="4">Nota de Débito</option>
-                                </select>
-                                <label>Tipo de Comprobante</label>
-                            </div>
-                        </div>*@
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <label asp-for="serie" class="control-label"></label>
-                                <input asp-for="serie" type="text" placeholder="F001" />
-                                <span asp-validation-for="serie" class="red-text text-darken-1"></span>
-                            </div>
-                            <div class="input-field col s6">
-                                <label asp-for="numero" class="control-label"></label>
-                                <input asp-for="numero" type="number" placeholder="269" />
-                                <span asp-validation-for="numero" class="red-text text-darken-1"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label asp-for="monto" class="control-label"></label>
-                                <input asp-for="monto" type="number" placeholder="444" />
-                                <span asp-validation-for="monto" class="red-text text-darken-1"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label asp-for="fecha"></label>
-                                <input asp-for="fecha" type="text" id="date" class="datepicker" placeholder="22/06/2021" />
-                                <span asp-validation-for="fecha" class="red-text text-darken-1"></span>
-                            </div>
-                        </div>
-                        <div asp-validation-summary="ModelOnly" class="red-text text-darken-1"></div>
+                        <p class="center-align justify">Señor Contribuyente , a través de esta consulta, Usted podrá verificar si una Factura Electrónica, una Boleta Electrónica, sus Notas Electrónicas relacionadas o una Guía de Remisión Electrónica se encuentran registradas o informadas a la SUNAT.</p>
+
                     </div>
-                    <div class="card-action" style="text-align: center">
-                        <button class="btn electro-ucayali-color waves-effect waves-light" id="consultar" type="submit" name="action">
-                            <i class="material-icons left">search</i>
-                            Consultar
-                        </button>
-                        <a class="btn waves-effect waves-light" asp-action="Index"><i class="material-icons left">arrow_back</i>Regresar</a>
-                    </div>
-                </form>
+                    <p style="text-decoration: underline; font-weight: bold; ">Necesitas Ayuda?</p><a align="left" class="btn-floating btn-large waves-effect waves-light electro-ucayali-color  modal-trigger" href="#modal1"><i class="material-icons">help</i></a>
+                    <hr />
+
+                    @*<div class="row">
+            <div class="input-field col s12">
+                <select name="tipoComprobante">
+                    <option value="1" selected>Factura</option>
+                    <option value="2">Boleta</option>
+                    <option value="3">Nota de Crédito</option>
+                    <option value="4">Nota de Débito</option>
+                </select>
+                <label>Tipo de Comprobante</label>
             </div>
-        </div>
-        <div class="row alinear">
-            <a asp-action="Login" asp-controller="Cuenta" class="btn">Inicia Sesión</a>
-        </div>
+        </div>*@
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label asp-for="serie" class="control-label"></label>
+                            <input asp-for="serie" type="text" placeholder="F001/B001" />
+                            <span asp-validation-for="serie" class="red-text text-darken-1"></span>
+                        </div>
+                        <div class="input-field col s6">
+                            <label asp-for="numero" class="control-label"></label>
+                            <input asp-for="numero" type="text" placeholder="269" />
+                            <span asp-validation-for="numero" class="red-text text-darken-1"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label asp-for="monto" class="control-label"></label>
+                            <input asp-for="monto" type="number" placeholder="20.00" />
+                            <span asp-validation-for="monto" class="red-text text-darken-1"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label asp-for="fecha"></label>
+                            <input asp-for="fecha" type="text" id="date" class="datepicker" placeholder="22/06/2021" />
+                            <span asp-validation-for="fecha" class="red-text text-darken-1"></span>
+                        </div>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="red-text text-darken-1"></div>
+                    <div class="g-recaptcha" data-sitekey="6LejDU8bAAAAAIOEUrDMXNlgUhOImmeQ94UbKw_I" style="">
+                    </div>
+                </div>
+                    <div class="row card-action" style="text-align: center">
+                        <button class="btn-large electro-ucayali-color waves-effect waves-light " id="consultar" type="submit" name="action">
+                            <i class="material-icons left">search</i>
+                            Buscar Comprobante
+                        </button>
+                    </div>
 
-<partial name="_LoadingPartial" />
+</form>
+        </div>
+    </div>
+    
+    <div class="row alinear">
+        <h5>¿NO TIENES UNA CUENTA?</h5>
+        <a asp-controller="Cuenta" asp-action="Registrar" class="btn-large electro-ucayali-color waves-effect waves-light ">REGISTRATE YA</a>
+    </div>
+    <div class="row alinear">
+        <h5>SI YA TIENES UNA CUENTA <br> INICIA SESION</h5>
+        <a asp-controller="Cuenta" asp-action="Login" class="btn-large electro-ucayali-color waves-effect waves-light ">INICIA SESION</a>
+    </div>
+   
+    <partial name="_LoadingPartial" />
 
-@if (!String.IsNullOrEmpty(Model.error))
+    @if (!String.IsNullOrEmpty(Model.error))
 {
     <div style="text-align: center">
         <p>
@@ -76,30 +101,30 @@
 }
 
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            var options = {
-                'defaultDate': Date(),
-                'format': 'yyyy-mm-dd',
-                'showClearBtn': true,
-                'i18n': {
-                    'cancel': 'Salir',
-                    'clear': 'Limpiar',
-                    'months': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                    'monthsShort': ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'],
-                    'weekdays': ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
-                    'weekdaysShort': ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-                    'weekdaysAbbrev': ['D','L','M','M','J','V','S']
-                }
-            };
-            $('#date').datepicker(options);
-            $('select').formSelect();
-            $('#modal1').modal({ 'dismissible': false });
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                var options = {
+                    'defaultDate': Date(),
+                    'format': 'yyyy-mm-dd',
+                    'showClearBtn': true,
+                    'i18n': {
+                        'cancel': 'Salir',
+                        'clear': 'Limpiar',
+                        'months': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                        'monthsShort': ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic'],
+                        'weekdays': ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+                        'weekdaysShort': ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                        'weekdaysAbbrev': ['D', 'L', 'M', 'M', 'J', 'V', 'S']
+                    }
+                };
+                $('#date').datepicker(options);
+                $('select').formSelect();
+                $('#modal1').modal({ 'dismissible': false });
 
-            $('#consultar').click(function () {
-                abrirModal(false);
+                $('#consultar').click(function () {
+                    abrirModal(false);
+                });
             });
-        });
-    </script>
-}
+        </script>
+    }

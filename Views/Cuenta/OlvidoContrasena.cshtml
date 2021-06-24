@@ -4,9 +4,7 @@
 
 @model FacturacionElectronica.Models.ForgotPasswordModel
 
-<div class="row">
-    <div class="col s6 offset-s3">
-        <div class="card">
+        <div class="card alinear">
             <div class="row">
                 <form asp-action="OlvidoContrasena" class="col s12">
                     <div class="card-content">
@@ -21,15 +19,13 @@
                         </div>
                         <div asp-validation-summary="ModelOnly" class="red-text text-darken-1"></div>
                         <div class="card-action" style="text-align: center">
-                            <button type="submit" id="recuperar" class="btn waves-effect waves-light">Recuperar</button>
-                            <a class="btn waves-effect waves-light" asp-controller="Cuenta" asp-action="Login"><i class="material-icons left">arrow_back</i>Regresar</a>
+                            <button type="submit" id="recuperar" class="btn electro-ucayali-color waves-effect waves-light">Recuperar</button>
+                            <a class="btn electro-ucayali-color waves-effect waves-light" asp-controller="Cuenta" asp-action="Login"><i class="material-icons left">arrow_back</i>Regresar</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-</div>
 
 <partial name="_LoadingPartial" />
 
