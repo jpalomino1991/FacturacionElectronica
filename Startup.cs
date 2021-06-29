@@ -4,17 +4,12 @@ using FacturacionElectronica.Data;
 using FacturacionElectronica.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FacturacionElectronica
 {
@@ -33,7 +28,8 @@ namespace FacturacionElectronica
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<User, IdentityRole>(opt => {
+            services.AddIdentity<User, IdentityRole>(opt =>
+            {
                 opt.Password.RequiredLength = 6;
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireUppercase = false;
@@ -64,7 +60,8 @@ namespace FacturacionElectronica
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.ConfigureApplicationCookie(o => {
+            services.ConfigureApplicationCookie(o =>
+            {
                 o.LoginPath = "/Cuenta/Login";
                 o.SlidingExpiration = false;
                 o.Cookie.IsEssential = false;

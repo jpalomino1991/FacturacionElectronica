@@ -1,5 +1,3 @@
-using System;
-
 namespace FacturacionElectronica.Models
 {
     public class ErrorViewModel

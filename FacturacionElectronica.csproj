@@ -26,13 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EmailService">
-      <HintPath>..\..\FacturacionElectronica-master (1)\FacturacionElectronica-account\FacturacionElectronica-account\bin\EmailService.dll</HintPath>
-    </Reference>
+    <Folder Include="Imagenes\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Imagenes\" />
+    <ProjectReference Include="..\EmailService\EmailService.csproj" />
   </ItemGroup>
 
 </Project>

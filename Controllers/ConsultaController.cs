@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FacturacionElectronica.Controllers
@@ -70,6 +69,7 @@ namespace FacturacionElectronica.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 List<ComprobanteAnonimo> comprobante = await _context.ComprobanteAnonimo.FromSqlInterpolated($"taComprobanteUsuarioAnominoLeer @NumeroSerie = {anonimo.serie},@NumeroComprobante = {anonimo.numero},@MontoTotal = {anonimo.monto},@FechaComprobante = {DateTime.Parse(anonimo.fecha)}").ToListAsync();
                 if (comprobante.Count > 0)
                 {
@@ -88,9 +88,9 @@ namespace FacturacionElectronica.Controllers
         public async Task<ActionResult> DownloadXML(string codigo)
         {
             List<taComprobanteArchivo> archivo = await _context.TaComprobanteArchivo.FromSqlInterpolated($"taComprobanteArchivoLeerPorCodigoComprobante @CodigoComprobante = {codigo} ,@CodigoTipoComprobanteArchivo = 1").ToListAsync();
-            if(archivo.Count > 0)
+            if (archivo.Count > 0)
             {
-                return File(archivo[0].ItemImage,"application/xml",archivo[0].NombreArchivo);
+                return File(archivo[0].ItemImage, "application/xml", archivo[0].NombreArchivo);
             }
             return Ok();
         }
