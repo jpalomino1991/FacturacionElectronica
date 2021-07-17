@@ -35,6 +35,8 @@ namespace FacturacionElectronica.Controllers
         {
             return View();
         }
+
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Registrar(UserRegistrationModel userModel)
